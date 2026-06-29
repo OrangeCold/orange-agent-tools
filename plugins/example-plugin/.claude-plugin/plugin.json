@@ -1,0 +1,11 @@
+{
+  "name": "example-plugin",
+  "version": "0.1.0",
+  "description": "示例插件骨架，演示 Claude Code 插件的标准结构。可作为开发新插件的起点模板。",
+  "author": {
+    "name": "OrangeCold"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/OrangeCold/orange-agent-tools/tree/main/plugins/example-plugin",
+  "keywords": ["example", "template", "starter"]
+}

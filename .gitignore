@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node（部分插件可能引入依赖）
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 日志与临时文件
+*.log
+tmp/
+.cache/
+
+# Claude Code 本地会话状态（不入库；注意 .claude-plugin 必须入库）
+.claude/local/
+.claude/settings.local.json

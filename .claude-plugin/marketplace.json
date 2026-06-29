@@ -1,0 +1,21 @@
+{
+  "name": "orange-agent-tools",
+  "owner": {
+    "name": "OrangeCold",
+    "email": "OrangeCold@users.noreply.github.com"
+  },
+  "description": "OrangeCold 个人开发的 Claude Code 插件集合，包含技能、命令、自定义 agent 与 MCP 工具。",
+  "plugins": [
+    {
+      "name": "example-plugin",
+      "source": "./plugins/example-plugin",
+      "description": "示例插件骨架，演示插件市场的目录结构与清单写法，可作为新插件的起点模板。",
+      "version": "0.1.0",
+      "author": {
+        "name": "OrangeCold"
+      },
+      "license": "MIT",
+      "keywords": ["example", "template", "starter"]
+    }
+  ]
+}
