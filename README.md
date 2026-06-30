@@ -11,6 +11,10 @@ orange-agent-tools/
 ├── .claude-plugin/
 │   └── marketplace.json     # 市场清单：定义市场名、维护者、插件列表
 ├── plugins/
+│   ├── easy-read/           # 易读重构：金字塔结构化 + 图表化 → HTML / 飞书文档
+│   │   ├── .claude-plugin/plugin.json
+│   │   ├── skills/{easy-read-in-html,easy-read-in-feishu}/SKILL.md
+│   │   └── references/      # content-structuring、diagram-guide、design-md×74 等
 │   └── example-plugin/      # 示例插件骨架（新插件起点模板）
 │       ├── .claude-plugin/plugin.json
 │       └── skills/hello/SKILL.md
@@ -49,6 +53,18 @@ claude plugin install example-plugin@orange-agent-tools
 /plugin marketplace update orange-agent-tools   # 拉取市场最新清单
 /plugin update                                   # 更新已安装的插件
 ```
+
+## 插件
+
+### easy-read
+
+把杂乱内容用金字塔原理重构为更易读、更易理解的结构化呈现。
+
+**Skills：**
+- `easy-read-in-html`：理解内容 → 有疑用选择题澄清（不篡改不发挥）→ 金字塔结构化 → 图表化 → 匹配真实品牌设计风格 → 生成带 Mermaid 图表的单文件自包含 HTML（图表离线可见）。
+- `easy-read-in-feishu`：理解内容 → 有疑用选择题澄清（不篡改不发挥）→ 金字塔结构化 → 图表化（Mermaid）→ 飞书原生块呈现 → 编排 lark-doc 写入飞书文档，图表用飞书原生 mermaid 画板块，返回文档链接。
+
+**设计：** 两个 skill 共享前置的"内容理解 + 金字塔结构化 + 图表化"逻辑，仅在输出载体分叉。HTML 美化复用内置的 74 个真实品牌设计系统（移植自 design-to-html）。
 
 ## 添加自己的插件（开发流程）
 
