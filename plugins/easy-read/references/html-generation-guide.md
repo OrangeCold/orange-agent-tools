@@ -82,21 +82,47 @@ flowchart LR
 </pre>
 ```
 
-### 内联 mermaid.min.js（离线可见的关键）
+### 内联 mermaid.min.js + 点击放大（离线可见 + 可放大看细节）
 
-单文件自包含要求 Mermaid 库**内联**而非走 CDN。但 mermaid.min.js 约 2–3MB，**不要**把它 Read 进上下文再粘贴。做法：
+单文件自包含要求 Mermaid 库**内联**而非走 CDN。mermaid.min.js 约 2–3MB，**不要** Read 进上下文再粘贴。同时给每个图加「点击放大」——避免图被缩得太小、用户看不清细节。
 
-1. 生成 HTML 时，在 `<head>` 内放一个占位标记，单独成行：
+1. 生成 HTML 时，在 `<head>` 内放占位标记 + 点击放大 CSS + 初始化脚本：
    ```html
+   <style>
+     .mermaid { cursor: pointer; transition: opacity .15s; }
+     .mermaid:hover { opacity: .85; }
+     .mermaid svg { max-width: 100%; height: auto; }
+     .mermaid-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.88); display: flex; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; padding: 24px; overflow: auto; }
+     .mermaid-overlay svg { width: 96vw; max-width: 1600px; height: auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,.3); }
+   </style>
    <script>/*__MERMAID_JS__*/</script>
-   ```
-2. 紧接其后放初始化脚本（非占位，直接写）：
-   ```html
    <script>
-     mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { /* 见下：品牌配色 */ } });
+     mermaid.initialize({
+       startOnLoad: true, theme: 'base',
+       themeVariables: { /* 品牌配色，见下 */ },
+       flowchart: { useMaxWidth: true, htmlLabels: true },
+       sequence: { useMaxWidth: true },
+       gantt: { useMaxWidth: true }
+     });
+     window.addEventListener('load', function () {
+       document.querySelectorAll('.mermaid').forEach(function (el) {
+         var svg = el.querySelector('svg');
+         if (!svg) return;
+         el.title = '点击放大';
+         el.addEventListener('click', function () {
+           var overlay = document.createElement('div');
+           overlay.className = 'mermaid-overlay';
+           overlay.innerHTML = svg.outerHTML;
+           function onEsc(e) { if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', onEsc); } }
+           overlay.addEventListener('click', function () { overlay.remove(); document.removeEventListener('keydown', onEsc); });
+           document.addEventListener('keydown', onEsc);
+           document.body.appendChild(overlay);
+         });
+       });
+     });
    </script>
    ```
-3. HTML 写盘后，用 python3 把 mermaid.min.js 内容注入占位（最稳，无转义问题）：
+2. HTML 写盘后，用 python3 把 mermaid.min.js 注入占位（最稳，无转义问题）：
    ```bash
    python3 -c "
    import pathlib, os
@@ -107,6 +133,8 @@ flowchart LR
    pathlib.Path(html_path).write_text(html.replace('/*__MERMAID_JS__*/', js))
    "
    ```
+
+**点击放大效果**：图默认响应式（自适应容器、移动端友好）；点击任意图 → 全屏覆盖层放大（最大 96vw × 90vh，白底），点击空白或按 Esc 关闭。无论原图多小，用户都能点开放大看清细节。
 
 ### 图表配色跟随品牌
 
