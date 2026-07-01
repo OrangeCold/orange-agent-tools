@@ -1,6 +1,6 @@
 {
   "name": "easy-read",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "把杂乱内容用金字塔原理重构为更易读、更易理解的结构化呈现；easy-read-in-html 输出带图表（架构图/流程图/时序图/泳道图/甘特图）的美观单文件 HTML。",
   "author": {
     "name": "OrangeCold"
