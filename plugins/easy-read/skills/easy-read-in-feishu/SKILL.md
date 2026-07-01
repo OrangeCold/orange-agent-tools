@@ -1,6 +1,7 @@
 ---
 name: easy-read-in-feishu
 description: 把杂乱的内容用金字塔原理重构为更易读、更易理解的结构化呈现，并输出为飞书云文档。当用户说"把这段内容整理到飞书""做成飞书文档""整理成飞书 wiki""把这份笔记/需求/方案/会议记录做成飞书文档让它好懂"时使用。会先理解内容，遇到不清楚的地方用选择题询问（不篡改、不发挥想象），再用金字塔原理结构化、把适合的部分画成 Mermaid 图表，最后编排 lark-doc 写入飞书文档（图表用飞书原生 mermaid 画板块，可编辑），返回文档链接。
+disable-model-invocation: true
 ---
 
 # easy-read-in-feishu
