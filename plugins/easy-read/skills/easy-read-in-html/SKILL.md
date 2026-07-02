@@ -39,9 +39,9 @@ disable-model-invocation: true
 
 ### 第 5 步：匹配设计风格
 
-读取 `${CLAUDE_PLUGIN_ROOT}/references/style-index.md`（**匹配只靠它，不要直接翻 design-md/**），沿四维语义匹配 1–3 个候选：内容类型 / 调性氛围 / 明暗偏好 / 行业线索。
+读取 `${CLAUDE_PLUGIN_ROOT}/references/style-index.md`（**匹配只靠它，不要直接翻 design-md/**），沿四维语义匹配候选：内容类型 / 调性氛围 / 明暗偏好 / 行业线索（行业只作保底，别让它锁死候选）。
 - 唯一命中 → 直接用，告诉用户选了哪个、为什么。
-- 多个都说得通 → 用 `AskUserQuestion` 单选，每选项带「调性 + 主色 + 明暗 + 适合理由」。
+- 多个都说得通 → 按 style-index.md 的「候选池规则」组 **4 候选**（1 同行业保底 + 2 调性契合的跨行业 + 1 视觉反差），用 `AskUserQuestion` 单选，每选项带「调性 + 主色 + 明暗 + 适合理由」。
 - 用户直接点名品牌 → 锁定该风格。
 
 ### 第 6 步：生成 HTML
