@@ -1,0 +1,10 @@
+{
+  "name": "red-book",
+  "version": "0.1.0",
+  "description": "小红书笔记编写技能集，把产品/主题写成真实、不浮夸、有场景感的笔记。",
+  "author": {
+    "name": "OrangeCold"
+  },
+  "license": "MIT",
+  "keywords": ["xiaohongshu", "red-book", "note", "copywriting", "social-media"]
+}

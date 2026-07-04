@@ -15,6 +15,9 @@ orange-agent-tools/
 │   │   ├── .claude-plugin/plugin.json
 │   │   ├── skills/{easy-read-in-html,easy-read-in-feishu}/SKILL.md
 │   │   └── references/      # content-structuring、diagram-guide、design-md×74 等
+│   ├── red-book/            # 小红书笔记：真实、不浮夸的笔记编写
+│   │   ├── .claude-plugin/plugin.json
+│   │   └── skills/note-write/SKILL.md
 │   └── example-plugin/      # 示例插件骨架（新插件起点模板）
 │       ├── .claude-plugin/plugin.json
 │       └── skills/hello/SKILL.md
@@ -65,6 +68,15 @@ claude plugin install example-plugin@orange-agent-tools
 - `easy-read-in-feishu`：理解内容 → 有疑用选择题澄清（不篡改不发挥）→ 金字塔结构化 → 图表化（Mermaid）→ 飞书原生块呈现 → 编排 lark-doc 写入飞书文档，图表用飞书原生 mermaid 画板块，返回文档链接。
 
 **设计：** 两个 skill 共享前置的"内容理解 + 金字塔结构化 + 图表化"逻辑，仅在输出载体分叉。HTML 美化复用内置的 74 个真实品牌设计系统（移植自 design-to-html）。
+
+### red-book
+
+把产品、工具或主题写成真实、不浮夸、有场景感的小红书笔记。
+
+**Skills：**
+- `note-write`：理清卖点与受众 → 拟标题（≤20 字、多风格备选）→ 功能介绍 → 真实场景（痛点 → 动作 → 效果 三段式）→ 用心细节 + 收尾 → 自检。硬约束：标题 ≤20 字、禁浮夸词（神器 / yyds / 封神…）、第一人称口语、emoji 适度。
+
+**设计：** 真人分享口吻优先于硬广——用具体场景讲功能，而非堆砌功能清单。
 
 ## 添加自己的插件（开发流程）
 

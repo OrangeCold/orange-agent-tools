@@ -21,10 +21,19 @@
       "name": "easy-read",
       "source": "./plugins/easy-read",
       "description": "把杂乱内容用金字塔原理重构为更易读、更易理解的结构化呈现；输出带图表（架构图/流程图/时序图/泳道图/甘特图）的单文件 HTML 或飞书文档。",
-      "version": "0.3.1",
+      "version": "0.4.0",
       "author": { "name": "OrangeCold" },
       "license": "MIT",
       "keywords": ["readability", "pyramid", "diagram", "html", "restructure"]
+    },
+    {
+      "name": "red-book",
+      "source": "./plugins/red-book",
+      "description": "小红书笔记编写技能集，把产品/主题写成真实、不浮夸、有场景感的笔记。",
+      "version": "0.1.0",
+      "author": { "name": "OrangeCold" },
+      "license": "MIT",
+      "keywords": ["xiaohongshu", "red-book", "note", "copywriting", "social-media"]
     }
   ]
 }
