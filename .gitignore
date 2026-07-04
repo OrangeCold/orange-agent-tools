@@ -28,4 +28,7 @@ tmp/
 # superpowers SDD 工作区（task brief / review package / ledger，本地临时，不入库）
 .superpowers/
 
+# 海报/画板工作目录（飞书画板任务本地产物：SVG 源 / openapi / live 截图，不入库）
+.easy-read-posters/
+
 docs
