@@ -34,6 +34,15 @@
       "author": { "name": "OrangeCold" },
       "license": "MIT",
       "keywords": ["xiaohongshu", "red-book", "note", "copywriting", "social-media"]
+    },
+    {
+      "name": "dida",
+      "source": "./plugins/dida",
+      "description": "通过 dida CLI 在终端管理滴答清单（dida365）：任务、清单、习惯、专注（番茄钟）、标签、倒数日。",
+      "version": "0.1.0",
+      "author": { "name": "OrangeCold" },
+      "license": "MIT",
+      "keywords": ["dida", "dida365", "ticktick", "todo", "task", "habit", "pomodoro", "cli"]
     }
   ]
 }

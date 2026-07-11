@@ -1,0 +1,9 @@
+{
+  "name": "dida",
+  "version": "0.1.0",
+  "description": "通过 dida CLI 在终端管理滴答清单（dida365）：任务、清单、习惯、专注（番茄钟）、标签、倒数日。",
+  "author": { "name": "OrangeCold" },
+  "license": "MIT",
+  "homepage": "https://github.com/OrangeCold/orange-agent-tools/tree/main/plugins/dida",
+  "keywords": ["dida", "dida365", "ticktick", "todo", "task", "habit", "pomodoro", "cli"]
+}
