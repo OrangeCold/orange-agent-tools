@@ -21,7 +21,7 @@
       "name": "easy-read",
       "source": "./plugins/easy-read",
       "description": "把杂乱内容用金字塔原理重构为更易读、更易理解的结构化呈现；输出带图表（架构图/流程图/时序图/泳道图/甘特图）的单文件 HTML 或飞书文档。",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "author": { "name": "OrangeCold" },
       "license": "MIT",
       "keywords": ["readability", "pyramid", "diagram", "html", "restructure"]

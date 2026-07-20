@@ -8,13 +8,13 @@ disable-model-invocation: true
 
 把杂乱的内容重构为**更易读、更易理解**的结构化 HTML。
 
-核心 = 金字塔原理结构化 + 图表化表达 + 真实品牌设计系统渲染。内置 74 个从真实网站提取的设计系统（颜色/字体/间距/组件 token + Do's & Don'ts），图表用 Mermaid（内联，离线可见）。
+核心 = 金字塔原理结构化 + 图表化表达 + 真实品牌设计系统渲染。内置 74 个从真实网站提取的设计系统（颜色/字体/间距/组件 token + Do's & Don'ts），图表用 Mermaid（内联，离线可见）。结构化与易读性自检逻辑（content-structuring / readability-checklist）与 easy-read-in-feishu 共享，差异仅在落到品牌化 HTML 而非飞书文档。
 
 ## 为什么这样设计
 
 让人「看懂」比让人「看到」更难。杂乱内容的真正问题往往不是丑，而是逻辑没理清——结论埋在细节里、层次混乱、关系靠脑补。所以本 skill 的质量命脉是**先用金字塔原理把内容理清**，再用图表把"关系/顺序/结构/时间"显化，最后才落到品牌化的视觉。视觉服务于理解，不是替代理解。
 
-## 工作流（6 步）
+## 工作流（8 步）
 
 ### 第 1 步：理解输入
 
@@ -23,28 +23,45 @@ disable-model-invocation: true
 - **受众与明暗偏好**（用户没说就推断）
 - **信息完整度**：哪些完整、哪些有歧义或缺失
 
-### 第 2 步：澄清（有疑才问）
+### 第 2 步：可读性体检（诊断，不改写）
+
+**产出“重排信号”，不改正原文。** 扫描输入，标记需要结构化处理的点，作为第 4 步的输入：
+- **超长句 / 多重嵌套从句**（如中文单句 >60 字）→ 标记“建议拆成并列要点”
+- **通篇无明确结论** → 标记，交第 3 步澄清（不替用户下结论）
+- **单主题下堆 >5 个要点** → 标记“需再分层”
+- **未解释的术语密集** → 标记“首次出现需释义”
+- **同一观点散落多处** → 标记“可合并”
+
+体检只诊断、不动措辞——不引入可读性公式（Flesch 等不适用中文，且只测表层），靠结构化特征定位难读点。
+
+### 第 3 步：澄清（有疑才问）
 
 **原则：不篡改原文、不发挥想象。** 凡是要写进结论但原文支撑不了的，一律问。
-- 内容有歧义/缺失/多义时，用 `AskUserQuestion` 提**选择题**（每题 2–4 选项，给推荐项）让用户补全。
+- 结合第 2 步体检标记 + 内容有歧义/缺失/多义时，用 `AskUserQuestion` 提**选择题**（每题 2–4 选项，给推荐项）让用户补全。
 - 无歧义时**跳过**此步，直接往下。不要为问而问。
 
-### 第 3 步：金字塔结构化
+### 第 4 步：金字塔结构化
 
-读取 `${CLAUDE_PLUGIN_ROOT}/references/content-structuring.md`，按其准则（结论先行 → 以上统下 → 归类分组 → 逻辑递进）把内容重排为骨架。**只重排、不改写、不补造**；拿不准的回第 2 步问用户。
+读取 `${CLAUDE_PLUGIN_ROOT}/references/content-structuring.md`，按其准则（结论先行 → 以上统下 → 归类分组 → 逻辑递进）把内容重排为骨架，**消费第 2 步的体检信号**（该拆的拆、该并的并、该分层的分层）。**只重排、不改写、不补造**；拿不准的回第 3 步问用户。
 
-### 第 4 步：图表化
+### 第 5 步：图表化
 
 读取 `${CLAUDE_PLUGIN_ROOT}/references/diagram-guide.md`，识别骨架中适合图示的部分（关系/顺序/结构/时间），选对应图表类型（架构图/流程图/时序图/泳道图/甘特图）写 Mermaid 源码。不适合图示的（纯结论/对比/清单）用卡片或表格。**图表服务于理解，不为画图而画图。**
 
-### 第 5 步：匹配设计风格
+### 第 6 步：匹配设计风格
 
 读取 `${CLAUDE_PLUGIN_ROOT}/references/style-index.md`（**匹配只靠它，不要直接翻 design-md/**），沿四维语义匹配候选：内容类型 / 调性氛围 / 明暗偏好 / 行业线索（行业只作保底，别让它锁死候选）。
 - 唯一命中 → 直接用，告诉用户选了哪个、为什么。
 - 多个都说得通 → 按 style-index.md 的「候选池规则」组 **4 候选**（1 同行业保底 + 2 调性契合的跨行业 + 1 视觉反差），用 `AskUserQuestion` 单选，每选项带「调性 + 主色 + 明暗 + 适合理由」。
 - 用户直接点名品牌 → 锁定该风格。
 
-### 第 6 步：生成 HTML
+### 第 7 步：易读性自检（生成 HTML 前过一遍）
+
+读取 `${CLAUDE_PLUGIN_ROOT}/references/readability-checklist.md`，按清单逐项验收内容结构（Find → Understand → Use 三维度 + chunking ≤4 + 术语一致 + 忠实兜底）。任一项不达标 → 回第 4 步修正骨架，不带着已知缺陷进入视觉生成。
+
+> 这是**内容结构**自检，与第 8 步 typography-system.md 的**视觉排版**自检（字号/行高/CJK）是两回事，两者都要过。
+
+### 第 8 步：生成 HTML
 
 读取选中的 `${CLAUDE_PLUGIN_ROOT}/references/design-md/<slug>.md`（**只读这一个**），再读 `${CLAUDE_PLUGIN_ROOT}/references/html-generation-guide.md` 与 `${CLAUDE_PLUGIN_ROOT}/references/typography-system.md`（内容含中文时后者必读），按规范生成**单文件自包含 HTML**：
 - 金字塔骨架映射到页面结构：核心结论做 hero 大标题，支撑要点做章节，细节做正文/卡片/图表。
@@ -70,13 +87,14 @@ disable-model-invocation: true
 
 ```
 easy-read/
-├── skills/easy-read-in-html/SKILL.md   # 本文件（6 步工作流）
+├── skills/easy-read-in-html/SKILL.md   # 本文件（8 步工作流）
 └── references/
-    ├── content-structuring.md           # 第 3 步：金字塔准则
-    ├── diagram-guide.md                 # 第 4 步：图表选型 + Mermaid
-    ├── style-index.md                   # 第 5 步：74 风格索引
-    ├── html-generation-guide.md         # 第 6 步：HTML 规范（含 Mermaid 渲染/内联/配色）
-    ├── typography-system.md             # 第 6 步：CJK 排版适配
-    ├── mermaid.min.js                   # 第 6 步：图表库（内联用）
+    ├── content-structuring.md           # 第 4 步：金字塔准则 + 改写边界 + 分块 + 术语（与 feishu 共享）
+    ├── diagram-guide.md                 # 第 5 步：图表选型 + Mermaid（与 feishu 共享）
+    ├── readability-checklist.md         # 第 7 步：易读性自检清单（与 feishu 共享）
+    ├── style-index.md                   # 第 6 步：74 风格索引
+    ├── html-generation-guide.md         # 第 8 步：HTML 规范（含 Mermaid 渲染/内联/配色）
+    ├── typography-system.md             # 第 8 步：CJK 排版适配
+    ├── mermaid.min.js                   # 第 8 步：图表库（内联用）
     └── design-md/                       # 74 个品牌设计系统（只读选中的那个）
 ```
