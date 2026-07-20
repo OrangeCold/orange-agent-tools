@@ -36,7 +36,7 @@ disable-model-invocation: true
 读取 `${CLAUDE_PLUGIN_ROOT}/references/content-structuring.md`，按其准则（结论先行 → 以上统下 → 归类分组 → 逻辑递进）重排为骨架，**消费第 2 步的体检信号**（该拆的拆、该并的并、该分层的分层）。**只重排、不改写、不补造**；拿不准回第 3 步问。
 
 ### 第 5 步：图表化
-读取 `${CLAUDE_PLUGIN_ROOT}/references/diagram-guide.md`，识别适合图示的部分，选图表类型（架构 / 流程 / 时序 / 泳道 / 甘特）写 Mermaid 源码。不适合图示的用表格 / 列表。**图表服务于理解。**
+读取 `${CLAUDE_PLUGIN_ROOT}/references/diagram-guide.md`，**主动扫描骨架里每一个关系 / 流程 / 结构 / 时序 / 分工点，优先画图**（架构 / 流程 / 时序 / 泳道 / 甘特），写 Mermaid 源码。只有纯结论 / 对比 / 无序清单才回退表格 / 列表。**图表服务于理解，但"不为画图而画图" ≠ "少画图"。**
 
 ### 第 6 步：飞书呈现
 读取 `${CLAUDE_PLUGIN_ROOT}/references/feishu-doc-guide.md`，按其映射把金字塔骨架 + 图表规划为飞书块结构（核心结论 → H1 + callout 高亮；支撑 → H2/H3；图表 → mermaid 画板块；对比 → 表格；清单 → 待办；细节 → callout 收拢）。
