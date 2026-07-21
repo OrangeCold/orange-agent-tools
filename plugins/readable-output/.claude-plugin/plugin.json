@@ -1,0 +1,11 @@
+{
+  "name": "readable-output",
+  "version": "0.1.0",
+  "description": "当 agent 准备输出方案、设计文档、技术方案、需求文档(PRD)、实施计划、会议纪要、周报、调研/分析报告、操作教程、规范等结构化长内容时，自动对输出做易读性优化（结论前置、拆短句、分块分层、术语一致、主动语态），让读者快速 Find→Understand→Use。只润色文本，不改格式/载体、不加图表、不改语义。短回复不触发。",
+  "author": {
+    "name": "OrangeCold"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/OrangeCold/orange-agent-tools/tree/main/plugins/readable-output",
+  "keywords": ["readability", "plain-language", "writing", "output", "document", "polish"]
+}

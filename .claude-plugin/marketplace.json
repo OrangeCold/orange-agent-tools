@@ -43,6 +43,15 @@
       "author": { "name": "OrangeCold" },
       "license": "MIT",
       "keywords": ["dida", "dida365", "ticktick", "todo", "task", "habit", "pomodoro", "cli"]
+    },
+    {
+      "name": "readable-output",
+      "source": "./plugins/readable-output",
+      "description": "当 agent 准备输出方案、设计文档、技术方案、需求文档(PRD)、实施计划、会议纪要、周报、调研/分析报告、操作教程、规范等结构化长内容时，自动对输出做易读性优化（结论前置、拆短句、分块分层、术语一致、主动语态），让读者快速 Find→Understand→Use。只润色文本，不改格式/载体、不加图表、不改语义。短回复不触发。",
+      "version": "0.1.0",
+      "author": { "name": "OrangeCold" },
+      "license": "MIT",
+      "keywords": ["readability", "plain-language", "writing", "output", "document", "polish"]
     }
   ]
 }
