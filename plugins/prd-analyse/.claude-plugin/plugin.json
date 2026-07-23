@@ -1,0 +1,10 @@
+{
+  "name": "prd-analyse",
+  "version": "0.1.0",
+  "description": "需求分析技能：按结构化流程对产品需求做深度分析，输出业务级需求分析文档（功能拆分、统一语言、业务流程闭环、错误边界、用户故事与验收标准）。",
+  "author": {
+    "name": "OrangeCold"
+  },
+  "license": "MIT",
+  "keywords": ["prd", "requirement", "analysis", "product", "acceptance-criteria", "user-story"]
+}
